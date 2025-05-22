@@ -1,16 +1,193 @@
+/* Define una variable de color en :root */
+:root {
+  --color-principal: #b91111;      
+}
+
+/* Botón con clase .cambiar-color: estilos base */
 .cambiar-color{
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
+  background-color: var(--color-principal); /* Usa la variable de color definida en :root */
+  color: #fff;                             /* Texto blanco */
+  border: none;                            /* Sin borde */
+  padding: 10px 20px;                      /* Espaciado interno: 10px arriba/abajo, 20px izquierda/derecha */
+  font-size: 16px;                         /* Tamaño de fuente de 16px */
+  cursor: pointer;                         /* Cursor tipo puntero al pasar el mouse */
+  transition: background 0.3s;             /* Transición suave del fondo en 0.3 segundos */
 }
 
+/* Botón con clase .cambiar-color cuando el mouse pasa encima */
 .cambiar-color:hover {
-  background-color: #e67e22;
+  background-color: var(--color-principal);               /* Cambia el fondo a naranja */
+}
+
+/* Clase .oculto: para ocultar elementos */
+.oculto {
+  display: none;                           /* No se muestra en pantalla */
+  color: green;                            /* Texto verde */
+  margin-top: 10px;                        /* Margen superior de 10px */
+}
+
+/* Cuando el elemento con id mensaje-oculto es el objetivo (:target) */
+#mensaje-oculto:target {
+  display: block;                          /* Se muestra en pantalla */
+}
+
+/* Primer hijo de cualquier elemento con clase .contenedor */
+.contenedor :first-child {
+  color: var(--color-principal);                             /* Texto azul */
+  font-weight: bold;                       /* Texto en negrita */
+  background-color: #f0f8ff;               /* Fondo azul muy claro */
+}
+
+/* Campos de formulario no válidos */
+input:invalid, textarea:invalid, select:invalid {
+  border: 2px solid var(--color-principal);                   /* Borde rojo de 2px */
+  background-color: #ffeaea;               /* Fondo rojo muy claro */
+}
+
+/* Resalta solo los campos de tipo email */
+input[type="email"]:invalid {
+  border: 2px solid var(--color-principal);                /* Borde naranja de 2px */
+  background-color: #fff3cd;               /* Fondo amarillo claro */
+}
+
+/* Cambia el borde del campo activo (focus) */
+input:focus, textarea:focus, select:focus {
+  border: 2px solid var(--color-principal);               /* Borde azul */
+  outline: none;                           /* Quita el contorno por defecto */
+  background-color: var(--color-principal);               /* Fondo azul muy claro */
+}
+
+/* Estiliza únicamente los elementos únicos de su tipo */
+*:only-of-type {
+  border: 2px dashed var(--color-principal);              /* Borde verde punteado */
+  background-color: var(--color-principal);               /* Fondo verde muy claro */
+}
+
+/* Aplica estilo solo al primer párrafo de una sección */
+section p:first-of-type {
+  color: var(--color-principal);                          /* Texto fucsia oscuro */
+  font-size: 18px;                         /* Tamaño de fuente más grande */
+  background-color: var(--color-principal);               /* Fondo rosa claro */
+  padding: 6px 12px;                       /* Espaciado interno */
+  border-radius: 6px;                      /* Bordes redondeados */
 }
 
 
 
+nav ul {
+  list-style: none;              /* Quita los puntos de la lista */
+  padding: 0;
+  display: flex;                 /* Muestra los elementos en línea */
+  gap: 20px;                     /* Espacio entre los links */
+}
+
+nav a {
+  color: black; /* Usa la variable de color */
+  text-decoration: none;         /* Quita el subrayado */
+  font-weight: bold;
+  transition: color 0.3s;        /* Transición suave de color */
+}
+
+nav a:hover {
+  color: #e67e22;                /* Cambia a naranja al pasar el mouse */
+}
+
+
+/* Añade un icono antes de cada título (h1, h2, h3, etc.) usando ::before */
+h1::before,
+h2::before,
+h3::before {
+  content: "* ";                        /* Icono  antes del título */
+  color: black;        /* Color del icono usando la variable */
+  font-size: 1em;                       /* Tamaño igual al texto */
+  margin-right: 6px;                    /* Espacio entre el icono y el texto */
+}
+
+
+p::after {
+  content: "";                /* Inserta un contenido vacío después de cada párrafo */
+  display: block;             /* Hace que el contenido se muestre como un bloque (nueva línea) */
+  width: 100%;                /* La línea ocupa todo el ancho del párrafo */
+  height: 2px;                /* Altura de la línea decorativa */
+  background-color: #1d1a1a;  /* Color de fondo de la línea (gris oscuro) */
+  margin: 8px 0 16px 0;       /* Margen: 8px arriba, 0 derecha, 16px abajo, 0 izquierda */
+  border-radius: 2px;         /* Bordes redondeados para la línea */
+}
+
+
+
+
+/* Botón con efecto de sombra usando ::after */
+.efecto-de-sombra {
+  position: relative; /* Necesario para posicionar el ::after respecto al botón */
+  z-index: 1;         /* Asegura que el botón esté encima de la sombra */
+}
+
+.efecto-de-sombra::after {
+  content: "";                           /* No muestra texto, solo la sombra */
+  position: absolute;                    /* Posiciona la sombra respecto al botón */
+  left: 8px;                             /* Desplaza la sombra a la derecha */
+  top: 8px;                              /* Desplaza la sombra hacia abajo */
+  width: 100%;                           /* Mismo ancho que el botón */
+  height: 100%;                          /* Misma altura que el botón */
+  background: rgba(139, 240, 7, 0.2);           /* Color de sombra (negro translúcido) */
+  border-radius: 8px;                    /* Bordes redondeados */
+  z-index: -1;                           /* Coloca la sombra detrás del botón */
+  filter: blur(2px);                     /* Difumina la sombra */
+  transition: all 0.3s;                  /* Transición suave */
+}
+
+.efecto-de-sombra:hover::after {
+  filter: blur(4px);                     /* Aumenta el desenfoque al pasar el mouse */
+  background: rgba(103, 168, 17, 0.3);           /* Sombra más oscura al hacer hover */
+}
+
+
+
+
+/* Añade comillas antes y después de un bloque de cita usando ::before y ::after */
+blockquote::before {
+  content: "“";                /* Comilla de apertura */
+  font-size: 2em;              /* Tamaño grande para la comilla */
+  color: yellow; 
+  vertical-align: top;         /* Alinea la comilla arriba */
+  margin-right: 4px;           /* Espacio a la derecha de la comilla */
+}
+
+blockquote::after {
+  content: "”";                /* Comilla de cierre */
+  font-size: 2em;              /* Tamaño grande para la comilla */
+  color: yellow; 
+  vertical-align: bottom;      /* Alinea la comilla abajo */
+  margin-left: 4px;            /* Espacio a la izquierda de la comilla */
+}
+
+
+/* Contenedor para el input con icono */
+.input-con-icono {
+  position: relative; /* Permite posicionar el icono respecto al input */
+  display: inline-block;
+}
+
+/* Icono antes del input usando ::before */
+.input-con-icono::before {
+  content: "😊";              /* Icono , */
+  position: absolute;         /* Posiciona el icono dentro del contenedor */
+  left: 10px;                 /* Espacio desde la izquierda */
+  top: 50%;                   /* Centra verticalmente */
+  transform: translateY(-50%);/* Ajusta el centrado vertical */
+  font-size: 1.2em;           /* Tamaño del icono */
+  color: #cecb1d;             /* Color del icono */
+  pointer-events: none;       /* El icono no bloquea el input */
+}
+
+/* Espacio a la izquierda del input para el icono */
+.input-con-icono input {
+  padding-left: 32px;         /* Deja espacio para el icono */
+}
+
+.imagen-relativa {
+  position: relative;    /* Permite mover la imagen sin sacar del flujo */
+  left: 40px;            /* Mueve la imagen 40px a la derecha */
+  top: 20px;             /* Mueve la imagen 20px hacia abajo */
+}
