@@ -1,0 +1,16 @@
+.cambiar-color{
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cambiar-color:hover {
+  background-color: #e67e22;
+}
+
+
+
